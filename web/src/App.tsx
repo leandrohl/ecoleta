@@ -5,12 +5,12 @@ import './App.css';
 // COMPONENTE: tudo aquilo que pode replicar na pagina
 // obs: todo componente comeca com letra maiuscula
 
-import Home from './pages/Home';
+import Routes from './routes'; 
 
 function App() {
   return (
       <div>
-        <Home />
+        <Routes />
       </div>
   );
 }
