@@ -1,18 +1,15 @@
-import express from 'express'; //a biblioteca é delcarada
+import express from 'express'; //a biblioteca é declarada
+import cors from 'cors';
+import path from 'path';
+import routes from './routes';
 
 const app = express();
 
-app.get('/users', (request, response) => { //vai executar uma funcao assim que usuario acessar esta rota (link)
-	console.log('Listagem de usuarios');
+app.use(cors());
+app.use(express.json()); //coloca uma funcionalidade a mais no express - faz com que o express entenda o corpo json
+app.use(routes);
 
-	//JSON
-	response.json([
-		'Diego',
-		'Cleiton',
-		'Robson',
-		'Daniel'
-	]);
-})
+app.use('/uploads', express.static(path.resolve(__dirname, '..', 'uploads')));
 
 app.listen(3333); //qual porta voce deseja executar
 

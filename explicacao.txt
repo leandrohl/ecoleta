@@ -1,0 +1,66 @@
+PARTE 1 - AULA 2 - ENTENDENDO REQUISICAO
+
+import express from 'express'; //a biblioteca é delcarada
+
+const app = express();
+
+app.use(express.json()) //coloca uma funcionalidade a mais no express - faz com que o express entenda o corpo json
+
+//Rota: Endereço completo da requisição
+//Recurso: Qual entidade estamos acessando do sistema
+
+//GET: Buscar uma ou mais informações do back-end
+//POST: Criar uma nova informação no back-end
+//PUT: Atualizar uma informação existente no back-end
+//DELETE: Remover uma informação do back-end
+
+
+//POST http://localhost:3333/users -> criar um usuario
+//GET http://localhost:3333/users -> listar usuarios
+//GET http://localhost:3333/users/id -> buscar dados do usuario com algum ID (Ex 5)
+
+// Request Param:  Parâmetros que vem na própria rota (ex: se voce quer buscar o id = 5, entao coloca http://localhost:3333/users/5) que identificam um recurso
+// Query Param: São parâmetros que vem na própria rota geralmente opcionais para filtros, paginação
+// Request Body: Paramêtros para criação / atualização de infromações
+
+//BANCO DE DADOS 
+// com a biblioteca Knex.js fica mais facil.
+// SELECT DO SQL: SELECT * FROM users WHERE name = 'Diego'
+// SELECT no KNEX: knex('users').where('name', 'Diego').select('*') 
+
+
+const users = [
+	'Diego', //posicao 0
+	'Cleiton', //posicao 1
+	'Robson', //posicao 2
+	'Daniel' //posicao 3
+]
+
+app.get('/users', (request, response) => { //vai executar uma funcao assim que usuario acessar esta rota (link)
+	const search = String(request.query.search);
+
+	const filteredUsers = search ? users.filter(user => user.includes(search)) : users; //verifica se search existe, se sim ele filtra o array, se nao ele deixa do jeito que estava
+	//JSON
+	response.json(filteredUsers);
+})
+
+app.get('/users/:id', (request, response) => {//":" significa que vai receber um parametro
+	const id = Number(request.params.id); //para mudar o tipo string para number
+
+	const user = users[id];
+
+	return response.json(user);
+}) 
+
+app.post('/users', (request, response) => {
+	const data = request.body //requerir corpo da requisicao
+
+	const user = {
+		name: data.name,
+		email: data.email
+	};
+	return response.json(user);
+})
+
+
+app.listen(3333); //qual porta voce deseja executar
