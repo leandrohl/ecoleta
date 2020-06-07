@@ -6,6 +6,8 @@ import {LeafletMouseEvent} from 'leaflet'
 import api from '../../services/api';
 import axios from 'axios';
 
+import Dropzone from '../../components/Dropzone'
+
 import './styles.css';
 
 import logo from '../../assets/logo.svg';
@@ -26,6 +28,8 @@ interface IBGECityResponse {
 	nome: string;
 }
 
+
+
 const CreatePoint = () => {
 	const [items, setItems] = useState<Item[]>([]);
 	const [ufs, setUfs] = useState<string[]>([]);
@@ -43,6 +47,7 @@ const CreatePoint = () => {
 	const [selectedCity, setSelectedCity] = useState('0');
 	const [selectedItems, setSelectedItems] = useState<number[]>([]);
 	const [selectedPosition, setSelectedPosition] = useState<[number, number]>([0, 0]);
+	const [selectedFile, setselectedFile] = useState<File>();
 
 	const history = useHistory();
 
@@ -118,6 +123,7 @@ const CreatePoint = () => {
 
 	async function handleSubmit(event: FormEvent){
 		event.preventDefault();
+		
 		const {name, email, whatsapp} = formData;
 		const uf = selectedUf;
 		const city = selectedCity;
@@ -151,6 +157,8 @@ const CreatePoint = () => {
 			</header>
 			<form onSubmit={handleSubmit}>
 				<h1>Cadastro do <br/> ponto de coleta</h1>
+				
+				<Dropzone onFileUploaded={setselectedFile}/>
 
 				<fieldset>
 					<legend>

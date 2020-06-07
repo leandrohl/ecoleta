@@ -16,9 +16,16 @@ class PointsController{
 			.where('city', String(city))
 			.where('uf', String(uf))
 			.distinct()
-			.select('points.*')
+			.select('points.*');
 
-		return response.json(points);
+		const serializedPoints = points.map(point => {
+			return {
+				...point,
+				image_url: `http://192.168.0.104:3333/uploads/${point.image}`,
+			};
+		}); //transformar os dados para um novo formato mais acessivel para quem esta fazendo a requisicao
+		
+		return response.json(serializedPoints);
 	}
 
 	async show(request: Request, response: Response){
@@ -29,13 +36,18 @@ class PointsController{
 		if (!point) {
 			return response.status(400).json({ messsage: 'Point not found. '})
 		}
+
+		const serializedPoint = {
+			...point,
+			image_url: `http://192.168.0.104:3333/uploads/${point.image}`,
+		};
 		
 		const items = await knex('itens') //vai trazer os itens do ponto do id
 		.join('point_itens', 'itens.id', '=', 'point_itens.item_id')
 		.where('point_itens.point_id', id)
 		.select('itens.title');
 
-		return response.json({point, items});
+		return response.json({serializedPoint, items});
 	}
 
 	async create(request: Request, response: Response){
@@ -62,7 +74,7 @@ class PointsController{
 			uf, 
 		}
 		const insertedIds = await trx('points').insert({
-			image: 'https://images.unsplash.com/photo-1583258292688-d0213dc5a3a8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60',
+			image: request.file.filename,
 			// https://images.unsplash.com/photo-1556767576-5ec41e3239ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60
 			name,
 			email, 
@@ -75,7 +87,10 @@ class PointsController{
 
 		const point_id = insertedIds[0];
 
-		const pointItems = items.map((item_id: number) => {
+		const pointItems = items
+		.split(',')
+		.map((item: string) => Number(item.trim()))
+		.map((item_id: number) => {
 			return {
 				item_id,  //item que é possivel FAZER COLETA
 				point_id, //trazer o id do novo point criado
