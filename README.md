@@ -14,9 +14,9 @@
 </p>
 
 ##  :notebook_with_decorative_cover: Sobre
-A Next Level Week foi realizado pela Rocketseat com o propósito de criar uma aplicação do zero durante a semana do meio ambiente.
+A Next Level Week foi realizada pela Rocketseat com o propósito de criar uma aplicação do zero durante a semana do meio ambiente.
 <br />
-Este evento teve como foco desenvolver a aplicação Ecoleta, um marketplace de coleta de resíduos que tem como finalidade cadastrar e exibir pontos de coleta mais próximos do usuário.
+Este evento teve como foco desenvolver a aplicação Ecoleta, um marketplace de coleta de resíduos que cadastra e exibe pontos de coleta próximos do usuário.
 -  **Server** : Objetivo de garantir a conexão entre os componentes da aplicação e o banco de dados;
 -  **Web** : Interface desenvolvida de pontos de coleta;
 -  **Mobile** : Aplicativo que exibe todos os pontos de coleta próximos a localização do usuário.
