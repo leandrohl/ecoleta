@@ -1,6 +1,7 @@
 <h1 align="center">
   Ecoleta
 <br />  
+  <br /> 
   <img src="assets/home-web.png" alt="ECOLETA" width="100%">
 <br />
 </h1>
