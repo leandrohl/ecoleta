@@ -1,10 +1,11 @@
 <h1 align="center">
   Ecoleta
-<br />
- <p align="center"> <strong> Marketplace de coleta de resíduos desenvolvido durante a Next Level Week </strong> </p>
+<br />  
   <img src="assets/home-web.png" alt="ECOLETA" width="100%">
 <br />
 </h1>
+ <p align="center"> <strong> Marketplace de coleta de resíduos desenvolvido durante a Next Level Week </strong> </p>
+
 <p align="center">
   <a href="https://opensource.org/licenses/MIT">
     <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License MIT">
