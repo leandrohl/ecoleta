@@ -9,7 +9,7 @@ class ItemsController {
 			return {
 				id: item.id,
 				title: item.title,
-				image_url: `http://192.168.0.104:3333/uploads/${item.image}`,
+				image_url: `http://192.168.0.107:3333/uploads/${item.image}`,
 			};
 		}) //transformar os dados para um novo formato mais acessivel para quem esta fazendo a requisicao
 	
