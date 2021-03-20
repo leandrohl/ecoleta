@@ -7,12 +7,6 @@
 </h1>
  <p align="center"> <strong> Marketplace de coleta de resíduos desenvolvido durante a Next Level Week </strong> </p>
 
-<p align="center">
-  <a href="https://opensource.org/licenses/MIT">
-    <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License MIT">
-  </a>
-</p>
-
 ##  :notebook_with_decorative_cover: Sobre
 A Next Level Week foi realizada pela Rocketseat com o propósito de criar uma aplicação do zero durante a semana do meio ambiente.
 <br />
